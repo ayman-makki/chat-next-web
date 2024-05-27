@@ -521,7 +521,7 @@ const fr: PartialLocaleType = {
     },
   },
   Mask: {
-    Name: "Masque",
+    Name: "Assistants",
     Page: {
       Title: "Masques de rôle prédéfinis",
       SubTitle: (count: number) => `${count} définitions de rôle prédéfinies`,
