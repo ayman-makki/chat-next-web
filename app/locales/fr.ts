@@ -566,8 +566,11 @@ const fr: PartialLocaleType = {
   },
   NewChat: {
     Return: "Retour",
-    Skip: "Commencer directement",
-    NotShow: "Ne plus afficher",
+    Skip: "Passer",
+    Title: "Choisir un assitant",
+    SubTitle: "Préconfigurez l'IA avec un prompt spécifique à un besoin",
+    More: "En savoir plus",
+    NotShow: "Ne pas afficher à nouveau",
     ConfirmNoShow:
       "Confirmer la désactivation ? Vous pourrez réactiver cette option à tout moment dans les paramètres.",
     Title: "Choisir un masque",
