@@ -40,6 +40,7 @@ export interface OpenAIListModelResponse {
   }>;
 }
 
+// Interface for the request payload of the chat API
 interface RequestPayload {
   messages: {
     role: "system" | "user" | "assistant";
@@ -54,30 +55,24 @@ interface RequestPayload {
   max_tokens?: number;
 }
 
+// Class representing the ChatGPT API implementation
 export class ChatGPTApi implements LLMApi {
   private disableListModels = true;
 
+  // Method to construct the API path
+  // Method to construct the API path
   path(path: string): string {
     const accessStore = useAccessStore.getState();
 
     let baseUrl = "";
 
+    // Check if custom config is being used
     if (accessStore.useCustomConfig) {
-      const isAzure = accessStore.provider === ServiceProvider.Azure;
-
-      if (isAzure && !accessStore.isValidAzure()) {
-        throw Error(
-          "incomplete azure config, please check it in your settings page",
-        );
-      }
-
-      if (isAzure) {
-        path = makeAzurePath(path, accessStore.azureApiVersion);
-      }
-
-      baseUrl = isAzure ? accessStore.azureUrl : accessStore.openaiUrl;
+      // Set base URL based on provider
+      baseUrl = accessStore.openaiUrl;
     }
 
+    // If base URL is not set, use default values
     if (baseUrl.length === 0) {
       const isApp = !!getClientConfig()?.isApp;
       baseUrl = isApp
@@ -85,9 +80,12 @@ export class ChatGPTApi implements LLMApi {
         : ApiPath.OpenAI;
     }
 
+    // Remove trailing slash from base URL
     if (baseUrl.endsWith("/")) {
       baseUrl = baseUrl.slice(0, baseUrl.length - 1);
     }
+
+    // Add protocol to base URL if missing
     if (!baseUrl.startsWith("http") && !baseUrl.startsWith(ApiPath.OpenAI)) {
       baseUrl = "https://" + baseUrl;
     }
@@ -97,17 +95,22 @@ export class ChatGPTApi implements LLMApi {
     return [baseUrl, path].join("/");
   }
 
+  // Method to extract the message from the API response
   extractMessage(res: any) {
     return res.choices?.at(0)?.message?.content ?? "";
   }
 
+  // Method to initiate a chat with the ChatGPT API
   async chat(options: ChatOptions) {
+    // Check if the model is a vision model
     const visionModel = isVisionModel(options.config.model);
+    // Convert messages to the required format
     const messages = options.messages.map((v) => ({
       role: v.role,
       content: visionModel ? v.content : getMessageTextContent(v),
     }));
 
+    // Get the model configuration
     const modelConfig = {
       ...useAppConfig.getState().modelConfig,
       ...useChatStore.getState().currentSession().mask.modelConfig,
@@ -116,6 +119,7 @@ export class ChatGPTApi implements LLMApi {
       },
     };
 
+    // Construct the request payload
     const requestPayload: RequestPayload = {
       messages,
       stream: options.config.stream,
@@ -128,7 +132,7 @@ export class ChatGPTApi implements LLMApi {
       // Please do not ask me why not send max_tokens, no reason, this param is just shit, I dont want to explain anymore.
     };
 
-    // add max_tokens to vision model
+    // Add max_tokens to vision model
     if (visionModel && modelConfig.model.includes("preview")) {
       requestPayload["max_tokens"] = Math.max(modelConfig.max_tokens, 4000);
     }
@@ -291,6 +295,7 @@ export class ChatGPTApi implements LLMApi {
     }
   }
 
+  // Method to get the usage statistics of the API
   async usage() {
     const formatDate = (d: Date) =>
       `${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, "0")}-${d
@@ -357,6 +362,7 @@ export class ChatGPTApi implements LLMApi {
     } as LLMUsage;
   }
 
+  // Method to get the available models
   async models(): Promise<LLMModel[]> {
     if (this.disableListModels) {
       return DEFAULT_MODELS.slice();
@@ -388,4 +394,6 @@ export class ChatGPTApi implements LLMApi {
     }));
   }
 }
+
+// Exporting the OpenaiPath constant
 export { OpenaiPath };
