@@ -573,9 +573,6 @@ const fr: PartialLocaleType = {
     NotShow: "Ne pas afficher à nouveau",
     ConfirmNoShow:
       "Confirmer la désactivation ? Vous pourrez réactiver cette option à tout moment dans les paramètres.",
-    Title: "Choisir un masque",
-    SubTitle: "Commencez maintenant, rencontrez les pensées derrière le masque",
-    More: "Voir tout",
   },
 
   URLCommand: {
