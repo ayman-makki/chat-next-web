@@ -137,16 +137,22 @@
   position: relative;
   padding-top: 20px;
   padding-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .sidebar-logo {
-  position: absolute;
-  right: 0;
-  bottom: 18px;
+  display: inline-flex;
+}
+
+.sidebar-title-container {
+  display: inline-flex;
+  flex-direction: column;
 }
 
 .sidebar-title {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
   animation: slide-in ease 0.3s;
 }
