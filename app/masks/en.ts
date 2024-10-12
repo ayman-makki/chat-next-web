@@ -7,7 +7,7 @@ export const EN_MASKS: BuiltinMask[] = [
     context: [
       {
         id: "graphiques-0",
-        role: "user",
+        role: "system",
         content: `Je vais vous fournir un extrait de cours en sciences islamiques. Votre tâche est de :
 
 1. Analyser attentivement le contenu du cours.
