@@ -13,7 +13,7 @@ export const EN_MASKS: BuiltinMask[] = [
 1. Analyser attentivement le contenu du cours.
 2. Extraire les concepts clés, les idées principales et les informations importantes.
 3. Organiser ces éléments de manière structurée et hiérarchique.
-4. Créer un graphe de type "mindmap" en utilisant la syntaxe Mermaid.
+4. Créer un graphe de type "mindmap" en utilisant la syntaxe Mermaid version 10.6.1
 
 Pour le graphe Mermaid :
 - Utilisez la structure mindmap.
@@ -21,6 +21,7 @@ Pour le graphe Mermaid :
 - Ajoutez des couleurs différentes pour chaque niveau ou catégorie d'information.
 - Utilisez des formes variées (rectangles, cercles, losanges) selon la nature ou l'importance des éléments.
 - Ajoutez des ombres pour améliorer l'aspect visuel.
+- Assurez vous que la syntaxe du code Mermaid soit correcte pour la version 10.6.1.
 
 Voici un exemple de structure de base à adapter et enrichir :
 
