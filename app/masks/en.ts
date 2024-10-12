@@ -19,8 +19,8 @@ Pour le graphe Mermaid :
 - Utilisez la structure mindmap.
 - Organisez les informations de façon logique et hiérarchique.
 - Ajoutez des couleurs différentes pour chaque niveau ou catégorie d'information.
-- Utilisez des formes variées (rectangles, cercles, losanges) selon la nature ou l'importance des éléments.
-- Ajoutez des ombres pour améliorer l'aspect visuel.
+- Utilisez des formes variées (rectangles, losanges) selon la nature ou l'importance des éléments. N'utilise le cercle que pour le noeud root.
+- Ajoutez des ombres sur les noeurs et de l'espacement entre les noeurds pour améliorer l'aspect visuel.
 - Assurez vous que la syntaxe du code Mermaid soit correcte pour la version 10.6.1.
 
 Voici un exemple de structure de base à adapter et enrichir :
@@ -55,7 +55,7 @@ Je vais maintenant vous fournir l'extrait du cours. Préparez-vous à l'analyser
     modelConfig: {
       model: "claude-3-5-sonnet-20240620",
       temperature: 0.5,
-      max_tokens: 8192,
+      max_tokens: 8000,
       presence_penalty: 0,
       frequency_penalty: 0,
       sendMemory: true,
@@ -87,7 +87,7 @@ Je vais maintenant vous fournir l'extrait du cours. Préparez-vous à l'analyser
     modelConfig: {
       model: "claude-3-5-sonnet-20240620",
       temperature: 0.5,
-      max_tokens: 4000,
+      max_tokens: 8192,
       presence_penalty: 0,
       frequency_penalty: 0,
       sendMemory: true,
