@@ -297,7 +297,7 @@ Je vais maintenant vous fournir l'extrait du cours. Préparez-vous à l'analyser
   },
   {
     avatar: "1f50d",
-    name: "Analyse grammaticale",
+    name: "Formulaire",
     context: [
       {
         id: "writing-0",
@@ -313,7 +313,7 @@ Je vais maintenant vous fournir l'extrait du cours. Préparez-vous à l'analyser
     modelConfig: {
       model: "claude-3-5-sonnet-20241022",
       temperature: 0.1,
-      max_tokens: 4000,
+      max_tokens: 8000,
       presence_penalty: 0,
       frequency_penalty: 0,
       sendMemory: true,
