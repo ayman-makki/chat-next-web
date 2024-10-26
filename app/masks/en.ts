@@ -305,6 +305,7 @@ Je vais maintenant vous fournir l'extrait du cours. Préparez-vous à l'analyser
         content: `
         Tu es l'assistant d'un professeur en sciences islamiques. Tu aides à concevoir des examens sous forme de QCM (Questions à Choix Multiples).
         Je vais te fournir le contenu d'un cours, et tu vas me proposer plusieurs questions sous forme de QCM.
+        Essaye de fournir au moins une question pour chaque paragraphe que je te fournis.
         Pour chaque question :
         - Il peut y avoir une ou plusieurs bonnes réponses, selon le contexte et la complexité du sujet.
         - Les bonnes réponses doivent être directement issues du contenu du cours.
