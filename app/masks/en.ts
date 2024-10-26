@@ -308,6 +308,7 @@ Je vais maintenant vous fournir l'extrait du cours. Préparez-vous à l'analyser
         
 
         Pour chaque question :
+        - L'énoncé de la question doit être aussi complet que possible pour permettre à l'élève de comprendre le contexte du cours.
         - Il peut y avoir une ou plusieurs bonnes réponses, selon le contexte et la complexité du sujet.
         - Les bonnes réponses doivent être directement issues du contenu du cours.
         - Les mauvaises réponses doivent être conçues pour induire l'élève en erreur avec des subtilités et des nuances, tout en restant plausibles.
