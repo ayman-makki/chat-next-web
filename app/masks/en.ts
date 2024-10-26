@@ -295,4 +295,33 @@ Je vais maintenant vous fournir l'extrait du cours. Préparez-vous à l'analyser
     builtin: true,
     createdAt: 1688899480413,
   },
+  {
+    avatar: "1f50d",
+    name: "Analyse grammaticale",
+    context: [
+      {
+        id: "writing-0",
+        role: "system",
+        content: `
+        Tu es l'assistant d'un professeur en sciences islamiques. Tu aides à concevoir des examens sous forme de QCM. 
+        Pour se faire, je vais te fournir le contenu d'un cours et tu vas me proposer plusieurs questions sous forme QCM avec la bonne réponse issue du cours et les mauvaises réponses pour induire l'élève en erreur avec des subtilités et nuances.
+        Fournis moi une liste python des questions avec pour chaque question le contenu dans un dictionnaire
+        `,
+        date: "",
+      },
+    ],
+    modelConfig: {
+      model: "claude-3-5-sonnet-20241022",
+      temperature: 0.1,
+      max_tokens: 4000,
+      presence_penalty: 0,
+      frequency_penalty: 0,
+      sendMemory: true,
+      historyMessageCount: 4,
+      compressMessageLengthThreshold: 2000,
+    },
+    lang: "fr",
+    builtin: true,
+    createdAt: 1688899480413,
+  },
 ];
