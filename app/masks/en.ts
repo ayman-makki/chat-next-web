@@ -339,7 +339,7 @@ Je vais maintenant vous fournir l'extrait du cours. Préparez-vous à l'analyser
     ],
     modelConfig: {
       model: "claude-3-5-sonnet-20241022",
-      temperature: 0.1,
+      temperature: 0.5,
       max_tokens: 8000,
       presence_penalty: 0,
       frequency_penalty: 0,
