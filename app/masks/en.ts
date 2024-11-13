@@ -86,6 +86,7 @@ Je vais maintenant vous fournir l'extrait du cours. Préparez-vous à l'analyser
     ],
     modelConfig: {
       model: "claude-3-5-sonnet-20240620",
+      model: "claude-3-5-sonnet-20240620",
       temperature: 0.5,
       max_tokens: 8192,
       presence_penalty: 0,
@@ -212,7 +213,7 @@ Je vais maintenant vous fournir l'extrait du cours. Préparez-vous à l'analyser
     ],
     modelConfig: {
       model: "claude-3-5-sonnet-20240620",
-      temperature: 1.0,
+      temperature: 0.5,
       max_tokens: 4000,
       presence_penalty: 0,
       frequency_penalty: 0,

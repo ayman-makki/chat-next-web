@@ -28,6 +28,10 @@ export const TENCENT_BASE_URL = "https://hunyuan.tencentcloudapi.com";
 export const MOONSHOT_BASE_URL = "https://api.moonshot.cn";
 export const IFLYTEK_BASE_URL = "https://spark-api-open.xf-yun.com";
 
+export const XAI_BASE_URL = "https://api.x.ai";
+
+export const CHATGLM_BASE_URL = "https://open.bigmodel.cn";
+
 export const CACHE_URL_PREFIX = "/api/cache";
 export const UPLOAD_URL = `${CACHE_URL_PREFIX}/upload`;
 
@@ -59,6 +63,8 @@ export enum ApiPath {
   Iflytek = "/api/iflytek",
   Stability = "/api/stability",
   Artifacts = "/api/artifacts",
+  XAI = "/api/xai",
+  ChatGLM = "/api/chatglm",
 }
 
 export enum SlotID {
@@ -111,6 +117,8 @@ export enum ServiceProvider {
   Moonshot = "Moonshot",
   Stability = "Stability",
   Iflytek = "Iflytek",
+  XAI = "XAI",
+  ChatGLM = "ChatGLM",
 }
 
 // Google API safety settings, see https://ai.google.dev/gemini-api/docs/safety-settings
@@ -133,6 +141,8 @@ export enum ModelProvider {
   Hunyuan = "Hunyuan",
   Moonshot = "Moonshot",
   Iflytek = "Iflytek",
+  XAI = "XAI",
+  ChatGLM = "ChatGLM",
 }
 
 export const Stability = {
@@ -215,6 +225,16 @@ export const Iflytek = {
   ChatPath: "v1/chat/completions",
 };
 
+export const XAI = {
+  ExampleEndpoint: XAI_BASE_URL,
+  ChatPath: "v1/chat/completions",
+};
+
+export const ChatGLM = {
+  ExampleEndpoint: CHATGLM_BASE_URL,
+  ChatPath: "api/paas/v4/chat/completions",
+};
+
 export const DEFAULT_INPUT_TEMPLATE = `{{input}}`; // input / time / model / lang
 // export const DEFAULT_SYSTEM_TEMPLATE = `
 // You are ChatGPT, a large language model trained by {{ServiceProvider}}.
@@ -271,23 +291,23 @@ export const DEFAULT_TTS_VOICES = [
 ];
 
 const openaiModels = [
-  // "gpt-3.5-turbo",
-  // "gpt-3.5-turbo-1106",
-  // "gpt-3.5-turbo-0125",
+  // // "gpt-3.5-turbo",
+  // // "gpt-3.5-turbo-1106",
+  // // "gpt-3.5-turbo-0125",
   "gpt-4",
-  // "gpt-4-0613",
-  // "gpt-4-32k",
-  // "gpt-4-32k-0613",
-  // "gpt-4-turbo",
-  // "gpt-4-turbo-preview",
+  // // "gpt-4-0613",
+  // // "gpt-4-32k",
+  // // "gpt-4-32k-0613",
+  // // "gpt-4-turbo",
+  // // "gpt-4-turbo-preview",
   "gpt-4o",
-  // "gpt-4o-2024-05-13",
+  // // "gpt-4o-2024-05-13",
   // "gpt-4o-2024-08-06",
   // "chatgpt-4o-latest",
   // "gpt-4o-mini",
   // "gpt-4o-mini-2024-07-18",
-  // "gpt-4-vision-preview",
-  // "gpt-4-turbo-2024-04-09",
+  // // "gpt-4-vision-preview",
+  // // "gpt-4-turbo-2024-04-09",
   // "gpt-4-1106-preview",
   // "dall-e-3",
   // "o1-mini",
@@ -295,21 +315,26 @@ const openaiModels = [
 ];
 
 const googleModels = [
-  // "gemini-1.0-pro",
+  // // "gemini-1.0-pro",
   "gemini-1.5-pro-latest",
   "gemini-1.5-flash-latest",
-  // "gemini-pro-vision",
+  // // "gemini-pro-vision",
 ];
 
 const anthropicModels = [
-  // "claude-instant-1.2",
-  // "claude-2.0",
-  // "claude-2.1",
-  // "claude-3-sonnet-20240229",
+  // // "claude-instant-1.2",
+  // // "claude-2.0",
+  // // "claude-2.1",
+  // // "claude-3-sonnet-20240229",
   "claude-3-5-sonnet-20240620",
   "claude-3-5-sonnet-20241022",
   "claude-3-opus-20240229",
+  "claude-3-opus-latest",
   "claude-3-haiku-20240307",
+  "claude-3-5-haiku-20241022",
+  "claude-3-5-haiku-latest",
+  "claude-3-5-sonnet-20241022",
+  "claude-3-5-sonnet-latest",
 ];
 
 const baiduModels = [
@@ -365,6 +390,19 @@ const iflytekModels = [
   "4.0Ultra",
 ];
 
+const xAIModes = ["grok-beta"];
+
+const chatglmModels = [
+  "glm-4-plus",
+  "glm-4-0520",
+  "glm-4",
+  "glm-4-air",
+  "glm-4-airx",
+  "glm-4-long",
+  "glm-4-flashx",
+  "glm-4-flash",
+];
+
 let seq = 1000; // 内置的模型序号生成器从1000开始
 export const DEFAULT_MODELS = [
   ...openaiModels.map((name) => ({
@@ -378,17 +416,17 @@ export const DEFAULT_MODELS = [
       sorted: 2, // 这里是固定的，确保顺序与之前内置的版本一致
     },
   })),
-  // ...openaiModels.map((name) => ({
-  //   name,
-  //   available: true,
-  //   sorted: seq++,
-  //   provider: {
-  //     id: "azure",
-  //     providerName: "Azure",
-  //     providerType: "azure",
-  //     sorted: 2,
-  //   },
-  // })),
+  // // ...openaiModels.map((name) => ({
+  // //   name,
+  // //   available: true,
+  // //   sorted: seq++,
+  // //   provider: {
+  // //     id: "azure",
+  // //     providerName: "Azure",
+  // //     providerType: "azure",
+  // //     sorted: 2,
+  // //   },
+  // // })),
   ...googleModels.map((name) => ({
     name,
     available: true,
@@ -398,6 +436,15 @@ export const DEFAULT_MODELS = [
       providerName: "Google",
       providerType: "google",
       sorted: 3,
+    },
+  })),
+  ...googleModels.map((name) => ({
+    name,
+    available: true,
+    provider: {
+      id: "google",
+      providerName: "Google",
+      providerType: "google",
     },
   })),
   ...anthropicModels.map((name) => ({
@@ -411,72 +458,72 @@ export const DEFAULT_MODELS = [
       sorted: 1,
     },
   })),
-  // ...baiduModels.map((name) => ({
-  //   name,
-  //   available: true,
-  //   sorted: seq++,
-  //   provider: {
-  //     id: "baidu",
-  //     providerName: "Baidu",
-  //     providerType: "baidu",
-  //     sorted: 5,
-  //   },
-  // })),
-  // ...bytedanceModels.map((name) => ({
-  //   name,
-  //   available: true,
-  //   sorted: seq++,
-  //   provider: {
-  //     id: "bytedance",
-  //     providerName: "ByteDance",
-  //     providerType: "bytedance",
-  //     sorted: 6,
-  //   },
-  // })),
-  // ...alibabaModes.map((name) => ({
-  //   name,
-  //   available: true,
-  //   sorted: seq++,
-  //   provider: {
-  //     id: "alibaba",
-  //     providerName: "Alibaba",
-  //     providerType: "alibaba",
-  //     sorted: 7,
-  //   },
-  // })),
-  // ...tencentModels.map((name) => ({
-  //   name,
-  //   available: true,
-  //   sorted: seq++,
-  //   provider: {
-  //     id: "tencent",
-  //     providerName: "Tencent",
-  //     providerType: "tencent",
-  //     sorted: 8,
-  //   },
-  // })),
-  // ...moonshotModes.map((name) => ({
-  //   name,
-  //   available: true,
-  //   sorted: seq++,
-  //   provider: {
-  //     id: "moonshot",
-  //     providerName: "Moonshot",
-  //     providerType: "moonshot",
-  //     sorted: 9,
-  //   },
-  // })),
-  // ...iflytekModels.map((name) => ({
-  //   name,
-  //   available: true,
-  //   sorted: seq++,
-  //   provider: {
-  //     id: "iflytek",
-  //     providerName: "Iflytek",
-  //     providerType: "iflytek",
-  //     sorted: 10,
-  //   },
-  // })),
+  // // ...baiduModels.map((name) => ({
+  // //   name,
+  // //   available: true,
+  // //   sorted: seq++,
+  // //   provider: {
+  // //     id: "baidu",
+  // //     providerName: "Baidu",
+  // //     providerType: "baidu",
+  // //     sorted: 5,
+  // //   },
+  // // })),
+  // // ...bytedanceModels.map((name) => ({
+  // //   name,
+  // //   available: true,
+  // //   sorted: seq++,
+  // //   provider: {
+  // //     id: "bytedance",
+  // //     providerName: "ByteDance",
+  // //     providerType: "bytedance",
+  // //     sorted: 6,
+  // //   },
+  // // })),
+  // // ...alibabaModes.map((name) => ({
+  // //   name,
+  // //   available: true,
+  // //   sorted: seq++,
+  // //   provider: {
+  // //     id: "alibaba",
+  // //     providerName: "Alibaba",
+  // //     providerType: "alibaba",
+  // //     sorted: 7,
+  // //   },
+  // // })),
+  // // ...tencentModels.map((name) => ({
+  // //   name,
+  // //   available: true,
+  // //   sorted: seq++,
+  // //   provider: {
+  // //     id: "tencent",
+  // //     providerName: "Tencent",
+  // //     providerType: "tencent",
+  // //     sorted: 8,
+  // //   },
+  // // })),
+  // // ...moonshotModes.map((name) => ({
+  // //   name,
+  // //   available: true,
+  // //   sorted: seq++,
+  // //   provider: {
+  // //     id: "moonshot",
+  // //     providerName: "Moonshot",
+  // //     providerType: "moonshot",
+  // //     sorted: 9,
+  // //   },
+  // // })),
+  // // ...iflytekModels.map((name) => ({
+  // //   name,
+  // //   available: true,
+  // //   sorted: seq++,
+  // //   provider: {
+  // //     id: "iflytek",
+  // //     providerName: "Iflytek",
+  // //     providerType: "iflytek",
+  // //     sorted: 10,
+  // //   },
+  // // })),
 ] as const;
 
 export const CHAT_PAGE_SIZE = 15;
